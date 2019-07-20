@@ -116,40 +116,6 @@
          </item>
         </widget>
        </item>
-       <item row="2" column="0" colspan="3">
-        <layout class="QHBoxLayout" name="horizontalLayout_2">
-         <item>
-          <widget class="QLabel" name="btnSpacingLabel">
-           <property name="text">
-            <string>Button spacing:</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QSpinBox" name="btnSpacingSpinBox">
-           <property name="suffix">
-            <string> px</string>
-           </property>
-           <property name="prefix">
-            <string/>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <spacer name="horizontalSpacer_7">
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>40</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-        </layout>
-       </item>
        <item row="3" column="0" colspan="3">
         <widget class="QCheckBox" name="drawBorderOnMaximizedWindows">
          <property name="text">
@@ -157,50 +123,10 @@
          </property>
         </widget>
        </item>
-       <item row="4" column="0" colspan="3">
-        <widget class="QCheckBox" name="drawBackgroundGradient">
-         <property name="text">
-          <string>Draw titlebar background gradient</string>
-         </property>
-        </widget>
-       </item>
-       <item row="5" column="0">
-        <widget class="QLabel" name="label_7">
-         <property name="enabled">
-          <bool>false</bool>
-         </property>
-         <property name="text">
-          <string>Gradient intensity:</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-         </property>
-        </widget>
-       </item>
-       <item row="5" column="1" alignment="Qt::AlignLeft">
-        <widget class="QSpinBox" name="gradientSpinBox">
-         <property name="enabled">
-          <bool>false</bool>
-         </property>
-         <property name="suffix">
-          <string> %</string>
-         </property>
-         <property name="maximum">
-          <number>100</number>
-         </property>
-        </widget>
-       </item>
        <item row="6" column="0" colspan="3">
         <widget class="QCheckBox" name="drawSizeGrip">
          <property name="text">
           <string>Add handle to resize windows with no border</string>
-         </property>
-        </widget>
-       </item>
-       <item row="7" column="0" colspan="3">
-        <widget class="QCheckBox" name="macOSButtons">
-         <property name="text">
-          <string>macOS-like buttons</string>
          </property>
         </widget>
        </item>
@@ -580,9 +506,7 @@
   <tabstop>tabWidget</tabstop>
   <tabstop>titleAlignment</tabstop>
   <tabstop>buttonSize</tabstop>
-  <tabstop>btnSpacingSpinBox</tabstop>
   <tabstop>drawBorderOnMaximizedWindows</tabstop>
-  <tabstop>drawBackgroundGradient</tabstop>
   <tabstop>drawSizeGrip</tabstop>
   <tabstop>animationsEnabled</tabstop>
   <tabstop>animationsDuration</tabstop>
@@ -621,38 +545,6 @@
     <hint type="destinationlabel">
      <x>141</x>
      <y>229</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>drawBackgroundGradient</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>gradientSpinBox</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>222</x>
-     <y>160</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>166</x>
-     <y>188</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>drawBackgroundGradient</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>label_7</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>222</x>
-     <y>160</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>64</x>
-     <y>57</y>
     </hint>
    </hints>
   </connection>

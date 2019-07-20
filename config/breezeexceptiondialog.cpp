@@ -61,7 +61,6 @@ namespace Breeze
         connect( m_ui.opaqueTitleBar, SIGNAL(clicked()), SLOT(updateChanged()) );
         m_ui.opacityOverrideLabelSpinBox->setSpecialValueText(tr("None"));
         connect( m_ui.opacityOverrideLabelSpinBox, QOverload<int>::of(&QSpinBox::valueChanged), [=](int /*i*/){updateChanged();} );
-        connect( m_ui.flatTitleBar, SIGNAL(clicked()), SLOT(updateChanged()) );
         connect( m_ui.isDialog, SIGNAL(clicked()), SLOT(updateChanged()) );
 
         // hide detection dialog on non X11 platforms
@@ -86,7 +85,6 @@ namespace Breeze
         m_ui.hideTitleBar->setChecked( m_exception->hideTitleBar() );
         m_ui.opaqueTitleBar->setChecked( m_exception->opaqueTitleBar() );
         m_ui.opacityOverrideLabelSpinBox->setValue( m_exception->opacityOverride() );
-        m_ui.flatTitleBar->setChecked( m_exception->flatTitleBar() );
         m_ui.isDialog->setChecked( m_exception->isDialog() );
 
         // mask
@@ -106,7 +104,6 @@ namespace Breeze
         m_exception->setHideTitleBar( m_ui.hideTitleBar->isChecked() );
         m_exception->setOpaqueTitleBar( m_ui.opaqueTitleBar->isChecked() );
         m_exception->setOpacityOverride( m_ui.opacityOverrideLabelSpinBox->value() );
-        m_exception->setFlatTitleBar( m_ui.flatTitleBar->isChecked() );
         m_exception->setIsDialog( m_ui.isDialog->isChecked() );
 
         // mask
@@ -130,7 +127,6 @@ namespace Breeze
         else if( m_exception->hideTitleBar() != m_ui.hideTitleBar->isChecked() ) modified = true;
         else if( m_exception->opaqueTitleBar() != m_ui.opaqueTitleBar->isChecked() ) modified = true;
         else if( m_exception->opacityOverride() != m_ui.opacityOverrideLabelSpinBox->value() ) modified = true;
-        else if( m_exception->flatTitleBar() != m_ui.flatTitleBar->isChecked() ) modified = true;
         else if( m_exception->isDialog() != m_ui.isDialog->isChecked() ) modified = true;
         else
         {

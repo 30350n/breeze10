@@ -1,5 +1,5 @@
 
-project(breezeenhanced)
+project(breeze10)
 set(PROJECT_VERSION "0.1")
 set(PROJECT_VERSION_MAJOR 0)
 
@@ -60,18 +60,18 @@ add_subdirectory(libbreezecommon)
 
 ################# newt target #################
 ### plugin classes
-set(breezeenhanced_SRCS
+set(breeze10_SRCS
     breezebutton.cpp
     breezedecoration.cpp
     breezeexceptionlist.cpp
     breezesettingsprovider.cpp
     breezesizegrip.cpp)
 
-kconfig_add_kcfg_files(breezeenhanced_SRCS breezesettings.kcfgc)
+kconfig_add_kcfg_files(breeze10_SRCS breezesettings.kcfgc)
 
 ### config classes
 ### they are kept separately because they might move in a separate library in the future
-set(breezeenhanced_config_SRCS
+set(breeze10_config_SRCS
     config/breezeconfigwidget.cpp
     config/breezedetectwidget.cpp
     config/breezeexceptiondialog.cpp
@@ -80,28 +80,28 @@ set(breezeenhanced_config_SRCS
     config/breezeitemmodel.cpp
 )
 
-set(breezeenhanced_config_PART_FORMS
+set(breeze10_config_PART_FORMS
    config/ui/breezeconfigurationui.ui
    config/ui/breezedetectwidget.ui
    config/ui/breezeexceptiondialog.ui
    config/ui/breezeexceptionlistwidget.ui
 )
 
-ki18n_wrap_ui(breezeenhanced_config_PART_FORMS_HEADERS ${breezeenhanced_config_PART_FORMS})
+ki18n_wrap_ui(breeze10_config_PART_FORMS_HEADERS ${breeze10_config_PART_FORMS})
 
 ### build library
-add_library(breezeenhanced MODULE
-    ${breezeenhanced_SRCS}
-    ${breezeenhanced_config_SRCS}
-    ${breezeenhanced_config_PART_FORMS_HEADERS})
+add_library(breeze10 MODULE
+    ${breeze10_SRCS}
+    ${breeze10_config_SRCS}
+    ${breeze10_config_PART_FORMS_HEADERS})
 
-target_link_libraries(breezeenhanced
+target_link_libraries(breeze10
     PUBLIC
         Qt5::Core
         Qt5::Gui
         Qt5::DBus
     PRIVATE
-        breezeenhancedcommon5
+        breeze10common5
         KDecoration2::KDecoration
         KF5::ConfigCore
         KF5::CoreAddons
@@ -111,14 +111,14 @@ target_link_libraries(breezeenhanced
         KF5::WindowSystem)
 
 if(BREEZE_HAVE_X11)
-  target_link_libraries(breezeenhanced
+  target_link_libraries(breeze10
     PUBLIC
       Qt5::X11Extras
       XCB::XCB)
 endif()
 
 
-install(TARGETS breezeenhanced DESTINATION ${PLUGIN_INSTALL_DIR}/org.kde.kdecoration2)
-install(FILES config/breezeenhancedconfig.desktop DESTINATION  ${SERVICES_INSTALL_DIR})
+install(TARGETS breeze10 DESTINATION ${PLUGIN_INSTALL_DIR}/org.kde.kdecoration2)
+install(FILES config/breeze10config.desktop DESTINATION  ${SERVICES_INSTALL_DIR})
 # install(TARGETS breezedecoration DESTINATION ${PLUGIN_INSTALL_DIR}/org.kde.kdecoration2)
 # install(FILES config/breezedecorationconfig.desktop DESTINATION  ${SERVICES_INSTALL_DIR})

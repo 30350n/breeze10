@@ -37,14 +37,11 @@ namespace Breeze
     enum Metrics
     {
 
-        //* corner radius (pixels)
-        Frame_FrameRadius = 3,
-
         //* titlebar metrics, in units of small spacing
-        TitleBar_TopMargin = 2,
-        TitleBar_BottomMargin = 2,
-        TitleBar_SideMargin = 2,
-        TitleBar_ButtonSpacing = 2,
+        TitleBar_TopMargin = 0,
+        TitleBar_BottomMargin = 0,
+        TitleBar_SideMargin = 0,
+        TitleBar_ButtonSpacing = 0,
 
         // shadow dimensions (pixels)
         Shadow_Overlap = 3,

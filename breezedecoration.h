@@ -70,6 +70,9 @@ namespace Breeze
         //* button height
         int buttonHeight() const;
 
+        //* icon size
+        int iconSize() const;
+
         //*@name active state change animation
         //@{
         void setOpacity( qreal );
@@ -132,7 +135,6 @@ namespace Breeze
         //*@name color customization
         //@{
         inline bool opaqueTitleBar() const;
-        inline bool flatTitleBar() const;
         inline int titleBarAlpha() const;
         //@}
 
@@ -203,9 +205,6 @@ namespace Breeze
 
     bool Decoration::opaqueTitleBar() const
     { return m_internalSettings->opaqueTitleBar(); }
-
-    bool Decoration::flatTitleBar() const
-    { return m_internalSettings->flatTitleBar(); }
 
     int Decoration::titleBarAlpha() const
     {

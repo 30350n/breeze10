@@ -454,21 +454,21 @@ namespace Breeze
 
         // adjust button position
         const int bHeight = captionHeight() + (isTopEdge() ? s->smallSpacing()*Metrics::TitleBar_TopMargin:0);
-        const int bWidth = buttonHeight();
+        const int bWidth = buttonHeight() * 1.5;
         const int verticalOffset = (isTopEdge() ? s->smallSpacing()*Metrics::TitleBar_TopMargin:0) + (captionHeight()-buttonHeight())/2;
         foreach( const QPointer<KDecoration2::DecorationButton>& button, m_leftButtons->buttons() + m_rightButtons->buttons() )
         {
             button.data()->setGeometry( QRectF( QPoint( 0, 0 ), QSizeF( bWidth, bHeight ) ) );
             static_cast<Button*>( button.data() )->setOffset( QPointF( 0, verticalOffset ) );
-            static_cast<Button*>( button.data() )->setIconSize( QSize( bWidth, bWidth ) );
+            static_cast<Button*>( button.data() )->setIconSize( QSize( bWidth, bHeight ) );
         }
 
         // left buttons
         if( !m_leftButtons->buttons().isEmpty() )
         {
 
-            // spacing (use our own spacing instead of s->smallSpacing()*Metrics::TitleBar_ButtonSpacing)
-            m_leftButtons->setSpacing(m_internalSettings->buttonSpacing());
+            // m_leftButtons->setSpacing(s->smallSpacing()*Metrics::TitleBar_ButtonSpacing);
+            m_leftButtons->setSpacing(0);
 
             // padding
             const int vPadding = isTopEdge() ? 0 : s->smallSpacing()*Metrics::TitleBar_TopMargin;
@@ -491,8 +491,8 @@ namespace Breeze
         if( !m_rightButtons->buttons().isEmpty() )
         {
 
-            // spacing (use our own spacing instead of s->smallSpacing()*Metrics::TitleBar_ButtonSpacing)
-            m_rightButtons->setSpacing(m_internalSettings->buttonSpacing());
+            // m_rightButtons->setSpacing(s->smallSpacing()*Metrics::TitleBar_ButtonSpacing);
+            m_rightButtons->setSpacing(0);
 
             // padding
             const int vPadding = isTopEdge() ? 0 : s->smallSpacing()*Metrics::TitleBar_TopMargin;
@@ -536,8 +536,7 @@ namespace Breeze
             // clip away the top part
             if( !hideTitleBar() ) painter->setClipRect(0, borderTop(), size().width(), size().height() - borderTop(), Qt::IntersectClip);
 
-            if( s->isAlphaChannelSupported() ) painter->drawRoundedRect(rect(), Metrics::Frame_FrameRadius, Metrics::Frame_FrameRadius);
-            else painter->drawRect( rect() );
+            painter->drawRect( rect() );
 
             painter->restore();
         }
@@ -570,61 +569,13 @@ namespace Breeze
         painter->save();
         painter->setPen(Qt::NoPen);
 
-        // render a linear gradient on title area and draw a light border at the top
-        if( m_internalSettings->drawBackgroundGradient() && !flatTitleBar() )
-        {
+        QColor titleBarColor = this->titleBarColor();
+        titleBarColor.setAlpha(titleBarAlpha());
 
-            QColor titleBarColor( this->titleBarColor() );
-            titleBarColor.setAlpha(titleBarAlpha());
-
-            QLinearGradient gradient( 0, 0, 0, titleRect.height() );
-            QColor lightCol( titleBarColor.lighter( 130 + m_internalSettings->backgroundGradientIntensity() ) );
-            gradient.setColorAt(0.0, lightCol );
-            gradient.setColorAt(0.99 / static_cast<qreal>(titleRect.height()), lightCol );
-            gradient.setColorAt(1.0 / static_cast<qreal>(titleRect.height()), titleBarColor.lighter( 100 + m_internalSettings->backgroundGradientIntensity() ) );
-            gradient.setColorAt(1.0, titleBarColor);
-
-            painter->setBrush(gradient);
-
-        } else {
-
-            QColor titleBarColor = this->titleBarColor();
-            titleBarColor.setAlpha(titleBarAlpha());
-
-            QLinearGradient gradient( 0, 0, 0, titleRect.height() );
-            QColor lightCol( titleBarColor.lighter( 130 ) );
-            gradient.setColorAt(0.0, lightCol );
-            gradient.setColorAt(0.99 / static_cast<qreal>(titleRect.height()), lightCol );
-            gradient.setColorAt(1.0 / static_cast<qreal>(titleRect.height()), titleBarColor );
-            gradient.setColorAt(1.0, titleBarColor);
-
-            painter->setBrush( gradient );
-
-        }
+        painter->setBrush( titleBarColor );
 
         auto s = settings();
-        if( isMaximized() || !s->isAlphaChannelSupported() )
-        {
-
-            painter->drawRect(titleRect);
-
-        } else if( c->isShaded() ) {
-
-            painter->drawRoundedRect(titleRect, Metrics::Frame_FrameRadius, Metrics::Frame_FrameRadius);
-
-        } else {
-
-            painter->setClipRect(titleRect, Qt::IntersectClip);
-
-            // the rect is made a little bit larger to be able to clip away the rounded corners at the bottom and sides
-            painter->drawRoundedRect(titleRect.adjusted(
-                isLeftEdge() ? -Metrics::Frame_FrameRadius:0,
-                isTopEdge() ? -Metrics::Frame_FrameRadius:0,
-                isRightEdge() ? Metrics::Frame_FrameRadius:0,
-                Metrics::Frame_FrameRadius),
-                Metrics::Frame_FrameRadius, Metrics::Frame_FrameRadius);
-
-        }
+        painter->drawRect(titleRect);
 
         // this would be ugly
         /*const QColor outlineColor( this->outlineColor() );
@@ -657,15 +608,31 @@ namespace Breeze
     //________________________________________________________________
     int Decoration::buttonHeight() const
     {
-        const int baseSize = settings()->gridUnit();
+        const int baseSize = 10; //settings()->gridUnit();
         switch( m_internalSettings->buttonSize() )
         {
             case InternalSettings::ButtonTiny: return baseSize;
-            case InternalSettings::ButtonSmall: return baseSize*1.5;
+            case InternalSettings::ButtonSmall: return baseSize*2;
             default:
-            case InternalSettings::ButtonDefault: return baseSize*2;
-            case InternalSettings::ButtonLarge: return baseSize*2.5;
-            case InternalSettings::ButtonVeryLarge: return baseSize*3.5;
+            case InternalSettings::ButtonDefault: return baseSize*3;
+            case InternalSettings::ButtonLarge: return baseSize*4;
+            case InternalSettings::ButtonVeryLarge: return baseSize*5;
+        }
+
+    }
+
+    //________________________________________________________________
+    int Decoration::iconSize() const
+    {
+        const int baseSize = 16;
+        switch( m_internalSettings->buttonSize() )
+        {
+            case InternalSettings::ButtonTiny: return baseSize/2;
+            case InternalSettings::ButtonSmall: return baseSize;
+            default:
+            case InternalSettings::ButtonDefault: return baseSize;
+            case InternalSettings::ButtonLarge: return baseSize*1.5;
+            case InternalSettings::ButtonVeryLarge: return baseSize*2;
         }
 
     }
@@ -682,8 +649,8 @@ namespace Breeze
 
             auto c = client().data();
             const int leftOffset = m_leftButtons->buttons().isEmpty() ?
-                Metrics::TitleBar_SideMargin*settings()->smallSpacing():
-                m_leftButtons->geometry().x() + m_leftButtons->geometry().width() + Metrics::TitleBar_SideMargin*settings()->smallSpacing();
+                4.0*settings()->smallSpacing():
+                m_leftButtons->geometry().x() + m_leftButtons->geometry().width() + 4.0*settings()->smallSpacing();
 
             const int rightOffset = m_rightButtons->buttons().isEmpty() ?
                 Metrics::TitleBar_SideMargin*settings()->smallSpacing() :
@@ -759,7 +726,7 @@ namespace Breeze
                 .expandedTo(BoxShadowRenderer::calculateMinimumBoxSize(params.shadow2.radius));
 
             BoxShadowRenderer shadowRenderer;
-            shadowRenderer.setBorderRadius(Metrics::Frame_FrameRadius + 0.5);
+            shadowRenderer.setBorderRadius(0.5);
             shadowRenderer.setBoxSize(boxSize);
             shadowRenderer.setDevicePixelRatio(1.0); // TODO: Create HiDPI shadows?
 
@@ -790,19 +757,13 @@ namespace Breeze
             painter.setPen(Qt::NoPen);
             painter.setBrush(Qt::black);
             painter.setCompositionMode(QPainter::CompositionMode_DestinationOut);
-            painter.drawRoundedRect(
-                innerRect,
-                Metrics::Frame_FrameRadius + 0.5,
-                Metrics::Frame_FrameRadius + 0.5);
+            painter.drawRoundedRect(innerRect, 0.5, 0.5);
 
             // Draw outline.
             painter.setPen(withOpacity(g_shadowColor, 0.2 * strength));
             painter.setBrush(Qt::NoBrush);
             painter.setCompositionMode(QPainter::CompositionMode_SourceOver);
-            painter.drawRoundedRect(
-                innerRect,
-                Metrics::Frame_FrameRadius - 0.5,
-                Metrics::Frame_FrameRadius - 0.5);
+            painter.drawRoundedRect(innerRect, -0.5, -0.5);
 
             painter.end();
 

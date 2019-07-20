@@ -1,24 +1,22 @@
-# BreezeEnhanced
+# Breeze10
 
 ## Overview
 
-BreezeEnhanced is a fork of KDE Breeze decoration with the following changes:
+Breeze10 is a fork of KDE Breeze decoration with the following changes:
 
- * The optional title-bar gradient is smooth and has a configurable intensity.
  * The title-bar opacity is configurable.
  * A very mild light line is added to the top of title-bar (especially for dark color schemes) and the separator between title-bar and window is removed.
- * By default, the close, minimize and maximize buttons are macOS-like and their sizes change on mouse-over when animation is enabled.
  * The spacing between buttons is configurable.
- * Opaqueness, opacity override and flatness are added to the exception list properties.
+ * Opaqueness, opacity override is added to the exception list properties.
  * Title-bar font is set indpendent from the KDE font settings (for use outside KDE).
 
-Please note that BreezeEnhanced is not related to the Breeze widget style. In fact, it is made to match various themes of the [Kvantum](https://github.com/tsujan/Kvantum) widget style but it works with all styles.
+Please note that Breeze10 is not related to the Breeze widget style. In fact, it is made to match various themes of the [Kvantum](https://github.com/tsujan/Kvantum) widget style but it works with all styles.
 
 ## Credits:
 
-BreezeEnhanced was started from BreezeBlurred (https://github.com/alex47/BreezeBlurred), a former fork of Breeze with title-bar translucency and blurring.
+Breeze10 was started from BreezeEnhanced (https://github.com/tsujan/BreezeEnhanced), a former fork of Breeze with title-bar translucency and blurring.
 
-Needless to say, the main work behind BreezeEnhanced is the Breeze KWin decoration itself, which can be downloaded from https://download.kde.org/stable/plasma/.
+Needless to say, the main work behind Breeze10 is the Breeze KWin decoration itself, which can be downloaded from https://download.kde.org/stable/plasma/.
 
 ## Installation
 
@@ -31,7 +29,7 @@ cmake .. -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DKDE_INSTALL_LI
 make
 sudo make install
 ```
-After the intallation, restart KWin by logging out and in. Then, BreezeEnhanced will appear in *System Settings &rarr; Application Style &rarr; Window Decorations*.
+After the intallation, restart KWin by logging out and in. Then, Breeze10 will appear in *System Settings &rarr; Application Style &rarr; Window Decorations*.
 
 ### Installation with package manager
 
@@ -40,7 +38,7 @@ Users of Arch and its derivatives can install breeze-enhanced-git from AUR.
 Users of OpenSUSE Tumbleweed can do (thanks to trmdi at GitHub):
 ```sh
 sudo zypper ar obs://home:trmdi trmdi
-sudo zypper in -r trmdi BreezeEnhanced
+sudo zypper in -r trmdi Breeze10
 ```
 
 ## Screenshots:

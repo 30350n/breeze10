@@ -1,25 +1,3 @@
 V5.16
 ---------
- * Imported some of the changes in Breeze 5.16.0.
-
-V5.15
----------
- * Imported the changes in Breeze 5.15.0.
- * Added the checkbox "Only for dialogs" to the exception dialog to support separate settings for dialogs.
-
-V5.14
----------
- * Upgraded for Breeze 5.14 with its new shadows.
- * Applied the upstream patch https://phabricator.kde.org/D16596.
- * Replaced font boldness checkbox with weight combobox.
- * Also include borders in the opacity override.
-
-V5.13
----------
- * First version, made out of Breeze 5.13 and BreezeBlurred with new options.
- * Set the font style name for KDE to render it correctly. I don't know why KDE needs that while LXQt doesn't.
- * Added an option for not using macOS-like buttons.
- * Added flatness to the exception list.
- * Made inactive macOS-like buttons gray.
- * Added a setting for button spacing.
- * Added opacity override to the exception dialog.
+ * Initial release.

@@ -80,10 +80,6 @@
       <default>ButtonDefault</default>
     </entry>
 
-    <entry name="ButtonSpacing" type = "Int">
-        <default>6</default>
-    </entry>
-
     <!-- maximized windows -->
     <entry name="DrawBorderOnMaximizedWindows" type = "Bool">
         <default>false</default>
@@ -93,21 +89,8 @@
         <default>false</default>
     </entry>
 
-    <entry name="MacOSButtons" type = "Bool">
-        <default>true</default>
-    </entry>
-
     <entry name="BackgroundOpacity" type = "Int">
         <default>100</default>
-    </entry>
-
-    <!-- size grip -->
-    <entry name="DrawBackgroundGradient" type = "Bool">
-        <default>true</default>
-    </entry>
-
-    <entry name="BackgroundGradientIntensity" type = "Int">
-        <default>20</default>
     </entry>
 
     <entry name="TitleBarFont" type = "String"/>
@@ -138,11 +121,6 @@
 
     <entry name="OpacityOverride" type = "Int">
        <default>-1</default>
-    </entry>
-
-    <!-- flat title bar -->
-    <entry name="FlatTitleBar" type = "Bool">
-       <default>false</default>
     </entry>
 
     <!-- dialogs -->

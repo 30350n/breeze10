@@ -61,7 +61,6 @@ namespace Breeze
             configuration->setHideTitleBar( exception.hideTitleBar() );
             configuration->setOpaqueTitleBar( exception.opaqueTitleBar() );
             configuration->setOpacityOverride( exception.opacityOverride() );
-            configuration->setFlatTitleBar( exception.flatTitleBar() );
             configuration->setIsDialog( exception.isDialog() );
 
             // append to exceptions
@@ -101,7 +100,7 @@ namespace Breeze
     {
 
         // list of items to be written
-        QStringList keys = { "Enabled", "ExceptionPattern", "ExceptionType", "HideTitleBar", "IsDialog", "OpaqueTitleBar", "OpacityOverride", "FlatTitleBar", "Mask", "BorderSize"};
+        QStringList keys = { "Enabled", "ExceptionPattern", "ExceptionType", "HideTitleBar", "IsDialog", "OpaqueTitleBar", "OpacityOverride", "Mask", "BorderSize"};
 
         // write all items
         foreach( auto key, keys )
