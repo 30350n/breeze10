@@ -34,7 +34,7 @@ sudo zypper install git extra-cmake-modules libkdecoration2-devel kcoreaddons-de
 
 ## Installation
 
-The version number in the file NEWS shows the main version of KWin that is required for the compilation. *Compilation should not be done against other versions of KWin!*.
+The version number in the file [NEWS](NEWS) shows the main version of KWin that is required for the compilation. *Compilation should not be done against other versions of KWin!*
 
 Open a terminal inside the source directory and do:
 ```sh

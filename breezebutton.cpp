@@ -24,6 +24,8 @@
 #include <KColorUtils>
 
 #include <QPainter>
+#include <QVariantAnimation>
+#include <QPainterPath>
 
 namespace Breeze
 {
@@ -36,15 +38,18 @@ namespace Breeze
     //__________________________________________________________________
     Button::Button(DecorationButtonType type, Decoration* decoration, QObject* parent)
         : DecorationButton(type, decoration, parent)
-        , m_animation( new QPropertyAnimation( this ) )
+        , m_animation( new QVariantAnimation( this ) )
     {
 
         // setup animation
-        m_animation->setStartValue( 0 );
+        // It is important start and end value are of the same type, hence 0.0 and not just 0
+        m_animation->setStartValue( 0.0 );
         m_animation->setEndValue( 1.0 );
-        m_animation->setTargetObject( this );
-        m_animation->setPropertyName( "opacity" );
         m_animation->setEasingCurve( QEasingCurve::InOutQuad );
+        connect(m_animation, &QVariantAnimation::valueChanged, this, [this](const QVariant &value) {
+            setOpacity(value.toReal());
+        });
+
 
         // setup default geometry
         const int height = decoration->buttonHeight();
@@ -180,7 +185,7 @@ namespace Breeze
         auto d = qobject_cast<Decoration*>( decoration() );
         bool isInactive(d && !d->client().data()->isActive()
                         && !isHovered() && !isPressed()
-                        && m_animation->state() != QPropertyAnimation::Running);
+                        && m_animation->state() != QAbstractAnimation::Running);
         QColor inactiveCol(Qt::gray);
         if (isInactive)
         {
@@ -202,7 +207,7 @@ namespace Breeze
             QPen pen( foregroundColor );
             pen.setCapStyle( Qt::FlatCap );
             pen.setJoinStyle( Qt::MiterJoin );
-            // pen.setWidthF( 1.0*qMax((qreal)1.0, 30/width ) );
+            // pen.setWidthF( PenWidth::Symbol*qMax((qreal)1.0, 20/width ) );
             pen.setWidthF( 1.0 );
 
             switch( type() )
@@ -520,11 +525,11 @@ namespace Breeze
         auto d = qobject_cast<Decoration*>(decoration());
         if( !(d && d->internalSettings()->animationsEnabled() ) ) return;
 
-        QAbstractAnimation::Direction dir = hovered ? QPropertyAnimation::Forward : QPropertyAnimation::Backward;
-        if( m_animation->state() == QPropertyAnimation::Running && m_animation->direction() != dir )
+        QAbstractAnimation::Direction dir = hovered ? QAbstractAnimation::Forward : QAbstractAnimation::Backward;
+        if( m_animation->state() == QAbstractAnimation::Running && m_animation->direction() != dir )
             m_animation->stop();
         m_animation->setDirection( dir );
-        if( m_animation->state() != QPropertyAnimation::Running ) m_animation->start();
+        if( m_animation->state() != QAbstractAnimation::Running ) m_animation->start();
 
     }
 
