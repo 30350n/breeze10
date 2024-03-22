@@ -34,13 +34,22 @@ namespace Breeze
     using InternalSettingsListIterator = QListIterator<InternalSettingsPtr>;
 
     //* metrics
-    enum Metrics
+    namespace Metrics
     {
 
-        // shadow dimensions (pixels)
-        Shadow_Overlap = 3,
+        //* corner radius, in units of small spacing
+        static constexpr qreal Frame_FrameRadius = 1.5;
 
-    };
+        //* titlebar metrics, in units of small spacing
+        static constexpr int TitleBar_TopMargin = 2;
+        static constexpr int TitleBar_BottomMargin = 2;
+        static constexpr int TitleBar_SideMargin = 2;
+        static constexpr int TitleBar_ButtonSpacing = 2;
+
+        // shadow dimensions (pixels)
+        static constexpr int Shadow_Overlap = 3;
+
+    }
 
     //* standard pen widths
     namespace PenWidth
