@@ -80,6 +80,10 @@
       <default>ButtonDefault</default>
     </entry>
 
+    <entry name="ExtraTitleMargin" type = "Int">
+        <default>0</default>
+    </entry>
+
     <!-- maximized windows -->
     <entry name="DrawBorderOnMaximizedWindows" type = "Bool">
         <default>false</default>

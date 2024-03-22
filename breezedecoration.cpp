@@ -590,10 +590,11 @@ namespace Breeze
         if( hideTitleBar() ) return qMakePair( QRect(), Qt::AlignCenter );
         else {
 
+            const int extraTitleMargin = m_internalSettings->extraTitleMargin();
             auto c = client().data();
-            int leftOffset = m_leftButtons->buttons().isEmpty() ?
-                4.0*settings()->smallSpacing():
-                m_leftButtons->geometry().x() + m_leftButtons->geometry().width() + 4.0*settings()->smallSpacing();
+            const int leftOffset = m_leftButtons->buttons().isEmpty() ?
+                4.0*settings()->smallSpacing() + extraTitleMargin :
+                m_leftButtons->geometry().x() + m_leftButtons->geometry().width() + 4.0*settings()->smallSpacing() + extraTitleMargin;
 
             if (!m_leftButtons->buttons().isEmpty() 
                 && m_leftButtons->buttons().last().data()->type() == DecorationButtonType::Menu 
@@ -604,8 +605,8 @@ namespace Breeze
             
 
             const int rightOffset = m_rightButtons->buttons().isEmpty() ?
-                4.0*settings()->smallSpacing() :
-                size().width() - m_rightButtons->geometry().x() + 4.0*settings()->smallSpacing();
+                4.0*settings()->smallSpacing() + extraTitleMargin:
+                size().width() - m_rightButtons->geometry().x() + 4.0*settings()->smallSpacing() + extraTitleMargin;
 
             const int yOffset = isMaximized() ? 0 : borderSize();
             const QRect maxRect( leftOffset, yOffset, size().width() - leftOffset - rightOffset, buttonHeight() );
