@@ -22,6 +22,7 @@
 
 #include <KDecoration2/DecoratedClient>
 #include <KColorUtils>
+//#include <KIconLoader>
 
 #include <QPainter>
 #include <QVariantAnimation>

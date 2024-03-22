@@ -1,8 +1,13 @@
+V5.19
+---------
+ * Imported useful changes in Breeze 5.19.1.
+ * Changed QVariantAnimation emuns to QAbstractAnimation ones.
+
 V5.18
 ---------
  * Imported some of the changes in Breeze 5.18.0.
 
- V5.17
+V5.17
 ---------
  * Imported some of the changes in Breeze 5.17.1.
 
