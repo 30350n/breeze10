@@ -208,7 +208,7 @@ namespace Breeze
             pen.setCapStyle( Qt::FlatCap );
             pen.setJoinStyle( Qt::MiterJoin );
             // pen.setWidthF( PenWidth::Symbol*qMax((qreal)1.0, 20/width ) );
-            pen.setWidthF( 1.0 );
+            pen.setWidthF( PenWidth::Symbol );
 
             switch( type() )
             {
@@ -221,13 +221,13 @@ namespace Breeze
                         painter->setBrush( backgroundColor );
                         painter->drawRect( QRectF( 0, 0, 45, 30 ) );
                     }
-                    pen.setWidthF( 1.1 );
+                    pen.setWidthF( PenWidth::Symbol*1.1 );
                     painter->setPen( pen );
                     painter->setBrush( Qt::NoBrush );
 
                     painter->drawLine( QPointF( 18, 10 ), QPointF( 28, 20 ) );
                     painter->drawLine( QPointF( 18, 20 ), QPointF( 28, 10 ) );
-                    pen.setWidthF( 1.0 );
+                    pen.setWidthF( PenWidth::Symbol );
                     break;
                 }
 
