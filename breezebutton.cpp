@@ -70,7 +70,7 @@ namespace Breeze
         //! in Standalone mode the button is not using the decoration metrics but its geometry
         m_iconSize = QSize(-1, -1);
     }
-            
+
     //__________________________________________________________________
     Button *Button::create(DecorationButtonType type, KDecoration2::Decoration *decoration, QObject *parent)
     {
